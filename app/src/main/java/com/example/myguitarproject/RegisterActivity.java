@@ -126,22 +126,20 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                         if(messRegister.equals("success")){
                             Toast.makeText(RegisterActivity.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
-//                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-//                            startActivity(intent);
                             finish();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<String> call, Throwable t) {
-                        Toast.makeText(RegisterActivity.this, "Lỗi ở Register", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(RegisterActivity.this, "Lỗi ở Register", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(RegisterActivity.this, "Lỗi insert avatar", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RegisterActivity.this, "Lỗi insert avatar", Toast.LENGTH_SHORT).show();
             }
         });
     }

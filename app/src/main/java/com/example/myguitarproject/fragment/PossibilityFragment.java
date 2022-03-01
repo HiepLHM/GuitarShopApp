@@ -37,7 +37,7 @@ public class PossibilityFragment extends Fragment {
     private List<Product> mListProductDiscount;
     private List<Product> mListNewProduct;
     private List<Product> mListProductBest;
-    //private List<BestSellingProduct> mListBestSellingProduct;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,7 +47,6 @@ public class PossibilityFragment extends Fragment {
         init();
         mListProductDiscount = new ArrayList<>();
         mListNewProduct = new ArrayList<>();
-        //mListBestSellingProduct = new ArrayList<>();
         mListProductBest = new ArrayList<>();
         disCountAdapter = new DisCountAdapter(getContext());
         newProductAdapter = new NewProductAdapter(getContext());
@@ -125,7 +124,7 @@ public class PossibilityFragment extends Fragment {
         });
     }
 
-    private void init(){
+    private void init() {
         rcvDiscount = view.findViewById(R.id.rcvDiscount);
         rcvNewProduct = view.findViewById(R.id.rcvNewProduct);
         rcvBestSellingProduct = view.findViewById(R.id.rcvBestSellingProduct);

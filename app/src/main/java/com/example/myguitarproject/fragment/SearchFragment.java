@@ -34,6 +34,7 @@ public class SearchFragment extends Fragment {
     private RecyclerView rcvSearch;
     private List<Product> mListProduct;
     private SearchAdapter searchAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class SearchFragment extends Fragment {
         edtSearchProduct.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     hanlderSearchProduct();
                 }
                 return false;

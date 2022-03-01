@@ -6,48 +6,52 @@
     android:padding="10dp">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvCart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rcvCart"
-        android:layout_above="@+id/linearSum"/>
+        android:layout_above="@+id/linearSum" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
         android:id="@+id/tvCartNull"
-        android:layout_above="@+id/linearSum"/>
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_above="@+id/linearSum"
+        android:visibility="gone" />
+
+    <LinearLayout
         android:id="@+id/linearSum"
-        android:layout_above="@+id/linearBt">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearBt"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
             android:text="Price: "
             android:textColor="@color/black"
-            />
+            android:textSize="20dp" />
+
         <TextView
+            android:id="@+id/tvSumPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvSumPrice"
-            android:textSize="20dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="20dp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearBt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
         <Button
+            android:id="@+id/btnPayment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnPayment"
-            android:text="Payment"/>
+            android:text="Payment" />
     </LinearLayout>
 
 </RelativeLayout>

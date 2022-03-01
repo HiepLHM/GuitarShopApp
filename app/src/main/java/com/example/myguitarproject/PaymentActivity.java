@@ -41,6 +41,7 @@ public class PaymentActivity extends AppCompatActivity {
     private List<Product> mListProduct;
     private Cart mCart;
     private OrderAdapter orderAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,14 +52,11 @@ public class PaymentActivity extends AppCompatActivity {
         mListCart = new ArrayList<>();
         orderAdapter = new OrderAdapter(PaymentActivity.this);
 
-
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         rcvPayment.setLayoutManager(linearLayoutManager);
-        //getListCart();
 
         mCart = (Cart) getIntent().getExtras().get("mCart");
-        if(mCart!=null){
+        if (mCart != null) {
             mListCart.add(mCart);
             orderAdapter.setData(mListCart);
             rcvPayment.setAdapter(orderAdapter);
@@ -83,12 +81,12 @@ public class PaymentActivity extends AppCompatActivity {
         String customerName = edtFullname.getText().toString().trim();
         String phoneNumber = edtPhoneNumber.getText().toString().trim();
         String address = edtAddress.getText().toString().trim();
-        for(int i =0; i<mListCart.size(); i++){
+        for (int i = 0; i < mListCart.size(); i++) {
             int idProduct = mListCart.get(i).getIdProduct();
             String nameProduct = mListCart.get(i).getNameProduct();
             String sumPrice = mListCart.get(i).getPriceProduct();
             int quantily = mListCart.get(i).getQuanlityProduct();
-            Log.d("quantily", quantily+"");
+            Log.d("quantily", quantily + "");
             String imageProduct = mListCart.get(i).getImageProduct();
             int id_user = mListCart.get(i).getIdUser();
             int id_cart = mListCart.get(i).getIdCart();
@@ -101,25 +99,25 @@ public class PaymentActivity extends AppCompatActivity {
                 public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
                     ArrayList<Product> products = (ArrayList<Product>) response.body();
                     mListProduct.addAll(products);
-                        int quantilySoldCurent = mListProduct.get(0).getQuantilySold();
-                        int quantilySold = quantilySoldCurent + quantily;
-                        DataClient dataClientUpdateQuantilySold = APIUtils.getData();
-                        Call<String> callUpdateQuantilySold = dataClientUpdateQuantilySold.callUpdateQuantilySold(idProduct, quantilySold);
-                        callUpdateQuantilySold.enqueue(new Callback<String>() {
-                            @Override
-                            public void onResponse(Call<String> call, Response<String> response) {
-                                String mess = response.body();
-                                if(mess.equals("success")){
-                                    Toast.makeText(PaymentActivity.this, "update quantily success", Toast.LENGTH_SHORT).show();
-                                }
+                    int quantilySoldCurent = mListProduct.get(0).getQuantilySold();
+                    int quantilySold = quantilySoldCurent + quantily;
+                    DataClient dataClientUpdateQuantilySold = APIUtils.getData();
+                    Call<String> callUpdateQuantilySold = dataClientUpdateQuantilySold.callUpdateQuantilySold(idProduct, quantilySold);
+                    callUpdateQuantilySold.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+                            String mess = response.body();
+                            if (mess.equals("success")) {
+                                Toast.makeText(PaymentActivity.this, "update quantily success", Toast.LENGTH_SHORT).show();
                             }
+                        }
 
-                            @Override
-                            public void onFailure(Call<String> call, Throwable t) {
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
 
-                            }
-                        });
-                    }
+                        }
+                    });
+                }
 
 
                 @Override
@@ -138,9 +136,6 @@ public class PaymentActivity extends AppCompatActivity {
                     Toast.makeText(PaymentActivity.this, "insert order success", Toast.LENGTH_SHORT).show();
 
 
-
-
-
                     //remove item product in cart product.
                     DataClient dataClientDeleteCartItem = APIUtils.getData();
                     Call<String> callDeleteCartItem = dataClientDeleteCartItem.callDeleteCartItem(id_cart);
@@ -148,7 +143,7 @@ public class PaymentActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
                             String mess = response.body();
-                            if(mess.equals("success")){
+                            if (mess.equals("success")) {
                                 Toast.makeText(PaymentActivity.this, "remove cart item success", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -170,27 +165,7 @@ public class PaymentActivity extends AppCompatActivity {
 
     }
 
-//    private void getListCart() {
-//        List<User> users = DataLocal.getInstance(this).localDAO().getListUserLocal();
-//        DataClient dataClient = APIUtils.getData();
-//        Call<List<Cart>> callListCart = dataClient.callListCart(users.get(0).getIdUser());
-//        callListCart.enqueue(new Callback<List<Cart>>() {
-//            @Override
-//            public void onResponse(Call<List<Cart>> call, Response<List<Cart>> response) {
-//                ArrayList<Cart> carts = (ArrayList<Cart>) response.body();
-//                mListCart.addAll(carts);
-//                orderAdapter.setData(mListCart);
-//                rcvPayment.setAdapter(orderAdapter);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Cart>> call, Throwable t) {
-//
-//            }
-//        });
-//    }
-
-    private void alertSuccess(){
+    private void alertSuccess() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
         alertDialog.setTitle("Payment Success!")
                 .setMessage("Bạn đã thanh toán thành công!!!")
@@ -226,20 +201,18 @@ public class PaymentActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        getListCart();
-        //sumPriceOrder();
     }
 
-    public static void sumPriceOrder(){
+    public static void sumPriceOrder() {
         long price_order = 0;
-        for(int i=0; i<mListCart.size(); i++){
+        for (int i = 0; i < mListCart.size(); i++) {
             price_order += Long.parseLong(mListCart.get(i).getPriceProduct());
         }
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        tvPricePayment.setText(decimalFormat.format(price_order)+"vnd");
+        tvPricePayment.setText(decimalFormat.format(price_order) + "vnd");
     }
 
-    private void initPayment(){
+    private void initPayment() {
         edtFullname = findViewById(R.id.edtFullname);
         edtPhoneNumber = findViewById(R.id.edtPhoneNumber);
         edtAddress = findViewById(R.id.edtAddress);

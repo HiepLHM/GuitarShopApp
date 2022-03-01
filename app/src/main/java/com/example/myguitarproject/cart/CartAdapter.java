@@ -38,10 +38,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public CartAdapter(Context mContext) {
         this.mContext = mContext;
     }
-    public void setData(List<Cart> list){
+
+    public void setData(List<Cart> list) {
         this.mListCart = list;
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -52,7 +54,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         Cart cart = mListCart.get(position);
-        if(cart==null){
+        if (cart == null) {
             return;
         }
         viewBinderHelper.bind(holder.swipeLayout, String.valueOf(cart.getIdCart()));
@@ -60,25 +62,25 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.tvNameCart.setText(cart.getNameProduct());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         long price = Long.parseLong(cart.getPriceProduct());
-        holder.tvPriceCart.setText(decimalFormat.format(price)+" vnd");
+        holder.tvPriceCart.setText(decimalFormat.format(price) + " vnd");
         Glide.with(mContext).load(cart.getImageProduct()).into(holder.imgCart);
         int quantily_first = Integer.parseInt(holder.tvQuantilyCart.getText().toString().trim());
         cart.setQuanlityProduct(quantily_first);
-        if(quantily_first<=1){
+        if (quantily_first <= 1) {
             holder.btnMinus.setVisibility(View.INVISIBLE);
         }
         long price_first = Long.parseLong(cart.getPriceProduct());
         holder.btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int quantily_click = Integer.parseInt(holder.tvQuantilyCart.getText().toString().trim())+1;
-                holder.tvQuantilyCart.setText(quantily_click+"");
+                int quantily_click = Integer.parseInt(holder.tvQuantilyCart.getText().toString().trim()) + 1;
+                holder.tvQuantilyCart.setText(quantily_click + "");
                 long price_click = price_first * quantily_click;
-                cart.setPriceProduct(price_click+"");
+                cart.setPriceProduct(price_click + "");
                 cart.setQuanlityProduct(quantily_click);
-                holder.tvPriceCart.setText(decimalFormat.format(price_click)+" vnd");
+                holder.tvPriceCart.setText(decimalFormat.format(price_click) + " vnd");
                 CartFragment.sumPrice();
-                if(quantily_click>=1){
+                if (quantily_click >= 1) {
                     holder.btnMinus.setVisibility(View.VISIBLE);
                 }
             }
@@ -86,14 +88,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int quantily_click = Integer.parseInt(holder.tvQuantilyCart.getText().toString().trim())-1;
-                holder.tvQuantilyCart.setText(quantily_click+"");
+                int quantily_click = Integer.parseInt(holder.tvQuantilyCart.getText().toString().trim()) - 1;
+                holder.tvQuantilyCart.setText(quantily_click + "");
                 long price_click = price_first * quantily_click;
-                cart.setPriceProduct(price_click+"");
+                cart.setPriceProduct(price_click + "");
                 cart.setQuanlityProduct(quantily_click);
-                holder.tvPriceCart.setText(decimalFormat.format(price_click)+" vnd");
+                holder.tvPriceCart.setText(decimalFormat.format(price_click) + " vnd");
                 CartFragment.sumPrice();
-                if(quantily_click<=1){
+                if (quantily_click <= 1) {
                     holder.btnMinus.setVisibility(View.INVISIBLE);
                 }
             }
@@ -110,7 +112,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
                         String mess = response.body();
-                        if(mess.equals("success")){
+                        if (mess.equals("success")) {
                             CartFragment.sumPrice();
                             Toast.makeText(mContext, "Delete Success", Toast.LENGTH_SHORT).show();
                         }
@@ -132,60 +134,24 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 bundle.putSerializable("mCart", cart);
                 gotoPayment.putExtras(bundle);
                 mContext.startActivity(gotoPayment);
-//                int id_product = cart.getIdProduct();
-//                String name_product = cart.getNameProduct();
-//                String sumPrice = cart.getPriceProduct();
-//                int quantily = cart.getQuanlityProduct();
-//                String image_product = cart.getImageProduct();
-//                int id_user = cart.getIdUser();
-//                DataClient dataClientInsert = APIUtils.getData();
-//                Call<String> callInsert = dataClientInsert.callInsertOrder(id_product, name_product, sumPrice, quantily, image_product, id_user);
-//                callInsert.enqueue(new Callback<String>() {
-//                    @Override
-//                    public void onResponse(Call<String> call, Response<String> response) {
-//                        String mess = response.body();
-//                        if(mess.equals("success")){
-//                            mListCart.remove(holder.getAdapterPosition());
-//                            notifyItemRemoved(holder.getAdapterPosition());
-//                            DataClient dataClientDeleteItem = APIUtils.getData();
-//                            Call<String> callDeleteItem = dataClientDeleteItem.callDeleteCartItem(cart.getIdCart());
-//                            callDeleteItem.enqueue(new Callback<String>() {
-//                                @Override
-//                                public void onResponse(Call<String> call, Response<String> response) {
-//                                    CartFragment.sumPrice();
-//                                    Toast.makeText(mContext, "Delete Success", Toast.LENGTH_SHORT).show();
-//                                }
-//
-//                                @Override
-//                                public void onFailure(Call<String> call, Throwable t) {
-//
-//                                }
-//                            });
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<String> call, Throwable t) {
-//
-//                    }
-//                });
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        if(mListCart!=null){
+        if (mListCart != null) {
             return mListCart.size();
         }
         return 0;
     }
 
-    public class CartViewHolder extends RecyclerView.ViewHolder{
+    public class CartViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgCart;
         private TextView tvNameCart, tvPriceCart, tvQuantilyCart, tvDeleteCart, tvPaymentCart;
         private Button btnMinus, btnPlus;
         private SwipeRevealLayout swipeLayout;
+
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
             imgCart = itemView.findViewById(R.id.imgCart);

@@ -7,41 +7,46 @@
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".ConfirmActivity">
+
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/textConfirmPassword"
-        android:textSize="18sp"/>
+        android:textSize="18sp" />
+
     <EditText
-        android:layout_marginTop="20dp"
+        android:id="@+id/edtPasswordOld"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:textSize="18sp"
-        android:id="@+id/edtPasswordOld"/>
+        android:textSize="18sp" />
+
     <TextView
+        android:id="@+id/tvErrorConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@color/red"
         android:layout_marginTop="5dp"
-        android:visibility="gone"
-        android:id="@+id/tvErrorConfirm"/>
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
     <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
         android:text="@string/confirmPassword"
-        android:id="@+id/btnConfirm"/>
+        android:textSize="18sp" />
+
     <Button
-        android:layout_marginTop="10dp"
+        android:id="@+id/btnCancelConfirm"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
+        android:layout_marginTop="10dp"
         android:text="@string/cancel"
-        android:id="@+id/btnCancelConfirm"/>
+        android:textSize="18sp" />
 
 </LinearLayout>

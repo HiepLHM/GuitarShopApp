@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyGuitarProject">
         <activity
+            android:name=".EditProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddNewProduct"
+            android:exported="false" />
+        <activity
+            android:name=".AdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".OrderStatusActivity"
             android:exported="false" />
         <activity

@@ -29,7 +29,7 @@ public class DisCountAdapter extends RecyclerView.Adapter<DisCountAdapter.DisCou
         this.mContext = mContext;
     }
 
-    public void setData(List<Product> list){
+    public void setData(List<Product> list) {
         this.mlistProductDiscount = list;
         notifyDataSetChanged();
     }
@@ -44,18 +44,18 @@ public class DisCountAdapter extends RecyclerView.Adapter<DisCountAdapter.DisCou
     @Override
     public void onBindViewHolder(@NonNull DisCountViewHolder holder, int position) {
         Product productDiscount = mlistProductDiscount.get(position);
-        if(productDiscount==null){
+        if (productDiscount == null) {
             return;
         }
         Glide.with(mContext).load(productDiscount.getImageProduct()).into(holder.imgProductDiscount);
-        holder.tvDiscount.setText(String.valueOf(productDiscount.getDiscount())+"%");
+        holder.tvDiscount.setText(String.valueOf(productDiscount.getDiscount()) + "%");
         holder.tvNameProductDiscount.setText(productDiscount.getNameProduct());
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
         long price = Long.parseLong(productDiscount.getPriceProduct().trim());
         holder.tvPriceProductReal.setText(decimalFormat.format(price) + " vnd");
         long discount = Long.parseLong(String.valueOf(productDiscount.getDiscount()));
-        long priceDiscount =price - (discount*price/100);
-        holder.tvPriceProductDiscount.setText(decimalFormat.format(priceDiscount)+" vnd");
+        long priceDiscount = price - (discount * price / 100);
+        holder.tvPriceProductDiscount.setText(decimalFormat.format(priceDiscount) + " vnd");
         holder.cvDiscountProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,16 +70,17 @@ public class DisCountAdapter extends RecyclerView.Adapter<DisCountAdapter.DisCou
 
     @Override
     public int getItemCount() {
-        if(mlistProductDiscount!=null){
+        if (mlistProductDiscount != null) {
             return mlistProductDiscount.size();
         }
         return 0;
     }
 
-    public class DisCountViewHolder extends RecyclerView.ViewHolder{
+    public class DisCountViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgProductDiscount;
         private TextView tvDiscount, tvNameProductDiscount, tvPriceProductReal, tvPriceProductDiscount;
         private CardView cvDiscountProduct;
+
         public DisCountViewHolder(@NonNull View itemView) {
             super(itemView);
             imgProductDiscount = itemView.findViewById(R.id.imgProductDiscount);

@@ -2,16 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="10dp">
+
     <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
         android:textColor="@color/black"
-        android:id="@+id/tvTitle"/>
+        android:textSize="20sp" />
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvListProduct"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rcvListProduct"/>
+        android:layout_height="wrap_content" />
 </LinearLayout>

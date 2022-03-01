@@ -14,17 +14,27 @@ public class User implements Serializable {
     private String Email;
     private String Avatar;
     private String Phone_number;
+    private String RoleAccount;
 
     public User() {
     }
 
-    public User(int idUser, String username, String password, String email, String avatar, String phone_number) {
+    public User(int idUser, String username, String password, String email, String avatar, String phone_number, String roleAccount) {
         IdUser = idUser;
         Username = username;
         Password = password;
         Email = email;
         Avatar = avatar;
         Phone_number = phone_number;
+        RoleAccount = roleAccount;
+    }
+
+    public String getRoleAccount() {
+        return RoleAccount;
+    }
+
+    public void setRoleAccount(String roleAccount) {
+        RoleAccount = roleAccount;
     }
 
     public int getIdUser() {

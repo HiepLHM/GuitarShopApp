@@ -9,8 +9,10 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -35,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
     private CircleImageView imgAvatarNav;
     private TextView tvUsernameNav, tvEmailNav;
     private ViewPager2Adapter viewPager2Adapter;
+    private Button btnManager;
     private static int mCurrentPage = 0;
-    private static final int FRAGMENT_HOME =0;
-    private static final int FRAGMENT_POSIBILITY =1;
-    private static final int FRAGMENT_CART =2;
+    private static final int FRAGMENT_HOME = 0;
+    private static final int FRAGMENT_POSIBILITY = 1;
+    private static final int FRAGMENT_CART = 2;
     private static final int FRAGMENT_SEARCH = 3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,28 +60,41 @@ public class MainActivity extends AppCompatActivity {
         Glide.with(this).load(userList.get(0).getAvatar()).into(imgAvatarNav);
         tvUsernameNav.setText(userList.get(0).getUsername());
         tvEmailNav.setText(userList.get(0).getEmail());
+        String role = userList.get(0).getRoleAccount();
+        //Log.d("abh", role);
 
-        //chuyển fragment when click to navigation drawer
+        if (role.equals("user")) {
+            btnManager.setVisibility(View.INVISIBLE);
+        }
+
+        btnManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoAdminManager();
+            }
+        });
+
+        //change fragment when click to navigation drawer
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                if(id == R.id.nav_home){
+                if (id == R.id.nav_home) {
                     openHomeFragment();
                     bottomNavigationView.getMenu().findItem(R.id.menuHome).setChecked(true);
-                } else if(id == R.id.nav_posibility){
+                } else if (id == R.id.nav_posibility) {
                     openPossibilityFragment();
                     bottomNavigationView.getMenu().findItem(R.id.menuPosibility).setChecked(true);
-                } else if(id == R.id.nav_cart){
+                } else if (id == R.id.nav_cart) {
                     openCartFragment();
                     bottomNavigationView.getMenu().findItem(R.id.menuCart).setChecked(true);
-                } else if( id == R.id.logout){
+                } else if (id == R.id.logout) {
                     handlerLogout();
-                } else if(id == R.id.setting){
+                } else if (id == R.id.setting) {
                     userProfile();
-                } else if(id == R.id.orderstatus) {
+                } else if (id == R.id.orderstatus) {
                     handlerOrderStatus();
-                } else if(id == R.id.nav_search){
+                } else if (id == R.id.nav_search) {
                     openSearchFragment();
                     bottomNavigationView.getMenu().findItem(R.id.menuSearch).setChecked(true);
                 }
@@ -93,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                switch(position){
+                switch (position) {
                     case 0:
                         mCurrentPage = FRAGMENT_HOME;
                         bottomNavigationView.getMenu().findItem(R.id.menuHome).setChecked(true);
@@ -119,16 +136,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
-                if(id == R.id.menuHome){
+                if (id == R.id.menuHome) {
                     openHomeFragment();
                     navigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
-                } else if(id == R.id.menuPosibility){
+                } else if (id == R.id.menuPosibility) {
                     openPossibilityFragment();
                     navigationView.getMenu().findItem(R.id.nav_posibility).setChecked(true);
-                } else if(id == R.id.menuCart){
+                } else if (id == R.id.menuCart) {
                     openCartFragment();
                     navigationView.getMenu().findItem(R.id.nav_cart).setChecked(true);
-                } else if(id == R.id.menuSearch){
+                } else if (id == R.id.menuSearch) {
                     openSearchFragment();
                     navigationView.getMenu().findItem(R.id.nav_search).setChecked(true);
                 }
@@ -137,10 +154,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void gotoAdminManager() {
+        Intent intent = new Intent(MainActivity.this, AdminActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     private void openSearchFragment() {
-        if(mCurrentPage!=FRAGMENT_SEARCH){
+        if (mCurrentPage != FRAGMENT_SEARCH) {
             viewPager2.setCurrentItem(3);
-            mCurrentPage=FRAGMENT_SEARCH;
+            mCurrentPage = FRAGMENT_SEARCH;
         }
     }
 
@@ -162,30 +185,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openCartFragment() {
-        if(mCurrentPage!=FRAGMENT_CART){
+        if (mCurrentPage != FRAGMENT_CART) {
             viewPager2.setCurrentItem(2);
-            mCurrentPage=FRAGMENT_CART;
+            mCurrentPage = FRAGMENT_CART;
         }
     }
 
     private void openPossibilityFragment() {
-        if(mCurrentPage!=FRAGMENT_POSIBILITY){
+        if (mCurrentPage != FRAGMENT_POSIBILITY) {
             viewPager2.setCurrentItem(1);
             mCurrentPage = FRAGMENT_POSIBILITY;
         }
     }
 
     private void openHomeFragment() {
-        if(mCurrentPage!=FRAGMENT_HOME){
+        if (mCurrentPage != FRAGMENT_HOME) {
             viewPager2.setCurrentItem(0);
-            mCurrentPage=FRAGMENT_HOME;
+            mCurrentPage = FRAGMENT_HOME;
         }
     }
 
 
-
-
-    private void initMain(){
+    private void initMain() {
         drawerLayout = findViewById(R.id.drawableLayout);
         toolbar = findViewById(R.id.toolBar);
         viewPager2 = findViewById(R.id.viewPager2);
@@ -195,5 +216,6 @@ public class MainActivity extends AppCompatActivity {
         imgAvatarNav = view.findViewById(R.id.imgAvatarNav);
         tvUsernameNav = view.findViewById(R.id.tvUsernameNav);
         tvEmailNav = view.findViewById(R.id.tvEmailNav);
+        btnManager = view.findViewById(R.id.btnManager);
     }
 }

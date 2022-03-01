@@ -25,6 +25,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private EditText edtNewPassword, edtConfirmNewPassword;
     private Button btnConfirmChangePass, btnCancel;
     private TextView tvErrorChangePass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         int idUser = userList.get(0).getIdUser();
         String newPass = edtNewPassword.getText().toString().trim();
         String confirmNewPass = edtConfirmNewPassword.getText().toString().trim();
-        if(!newPass.equals(confirmNewPass)){
+        if (!newPass.equals(confirmNewPass)) {
             tvErrorChangePass.setText("Password incorrect");
             tvErrorChangePass.setVisibility(View.VISIBLE);
             return;
@@ -66,7 +67,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 String mess = response.body();
-                if(mess.equals("success")){
+                if (mess.equals("success")) {
                     Toast.makeText(ChangePasswordActivity.this, "Password Changed", Toast.LENGTH_SHORT).show();
                     Intent gotoHome = new Intent(ChangePasswordActivity.this, UserProfile.class);
                     startActivity(gotoHome);
@@ -76,12 +77,12 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(ChangePasswordActivity.this, "Call api changepass failed", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ChangePasswordActivity.this, "Call api changepass failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void initConfirmChangePass(){
+    private void initConfirmChangePass() {
         edtNewPassword = findViewById(R.id.edtNewPassword);
         edtConfirmNewPassword = findViewById(R.id.edtConfirmNewPassword);
         btnConfirmChangePass = findViewById(R.id.btnConfirmChangePass);

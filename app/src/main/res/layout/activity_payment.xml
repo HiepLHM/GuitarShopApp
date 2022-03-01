@@ -6,68 +6,78 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".PaymentActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/contact"
             android:textColor="@color/black"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
+
         <EditText
+            android:id="@+id/edtFullname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/fullname"
-            android:id="@+id/edtFullname"
-            android:textSize="18dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
         <EditText
+            android:id="@+id/edtPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/phonenumber"
-            android:id="@+id/edtPhoneNumber"
-            android:textSize="18dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="18dp" />
+
         <EditText
+            android:id="@+id/edtAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/address"
-            android:id="@+id/edtAddress"
-            android:textSize="18dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:textSize="18dp" />
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:padding="10dp"
+        android:id="@+id/rcvPayment"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:id="@+id/rcvPayment"/>
+        android:padding="10dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="Tổng: "
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:padding="10dp"/>
+            android:textSize="20sp" />
+
         <TextView
+            android:id="@+id/tvPricePayment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tvPricePayment"
+            android:padding="10dp"
             android:textColor="@color/black"
-            android:textSize="20sp"
-            android:padding="10dp"/>
+            android:textSize="20sp" />
     </LinearLayout>
+
     <Button
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:id="@+id/btnPayment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/payment"
-        android:id="@+id/btnPayment"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/payment" />
 </LinearLayout>

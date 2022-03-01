@@ -28,6 +28,7 @@ public class OrderStatusActivity extends AppCompatActivity {
     private Button btnBack;
     private List<OrderStatus> mListOrderStatus;
     private OrderStatusAdapter orderStatusAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +74,7 @@ public class OrderStatusActivity extends AppCompatActivity {
         });
     }
 
-    private void init(){
+    private void init() {
         rcvOrderStatus = findViewById(R.id.rcvOrderStatus);
         btnBack = findViewById(R.id.btnBackToHome);
     }

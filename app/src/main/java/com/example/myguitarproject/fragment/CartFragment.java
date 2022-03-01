@@ -51,11 +51,11 @@ public class CartFragment extends Fragment {
     ActivityResultLauncher<Intent> mActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
-        @Override
-        public void onActivityResult(ActivityResult result) {
-            //mailamtiep
-        }
-    });
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    // receiver data.
+                }
+            });
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,30 +79,6 @@ public class CartFragment extends Fragment {
                 bundle.putSerializable("mListCart", (Serializable) mListCart);
                 gotoPayment.putExtras(bundle);
                 mActivityResultLauncher.launch(gotoPayment);
-//                for(int i = 0; i<mListCart.size();i++){
-//                    int idProduct = mListCart.get(i).getIdProduct();
-//                    String nameProduct = mListCart.get(i).getNameProduct();
-//                    String sumPrice = mListCart.get(i).getPriceProduct();
-//                    int quantily = mListCart.get(i).getQuanlityProduct();
-//                    String imageProduct = mListCart.get(i).getImageProduct();
-//                    int id_user = mListCart.get(i).getIdUser();
-//                    DataClient dataClient = APIUtils.getData();
-//                    Call<String> call = dataClient.callInsertOrder(idProduct, nameProduct, sumPrice, quantily, imageProduct, id_user);
-//                    call.enqueue(new Callback<String>() {
-//                        @Override
-//                        public void onResponse(Call<String> call, Response<String> response) {
-//                            String mess = response.body();
-//                            if(mess.equals("success")){
-//                                Toast.makeText(getContext(), "Insert Order success", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<String> call, Throwable t) {
-//                            Toast.makeText(getContext(), "Failed call InsertOrder", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-                //}
             }
         });
 
@@ -136,16 +112,17 @@ public class CartFragment extends Fragment {
         sumPrice();
     }
 
-    public static void sumPrice(){
+
+    public static void sumPrice() {
         long sumPrice = 0;
-        for(int i=0; i<mListCart.size();i++){
-            sumPrice+=Long.parseLong(mListCart.get(i).getPriceProduct());
+        for (int i = 0; i < mListCart.size(); i++) {
+            sumPrice += Long.parseLong(mListCart.get(i).getPriceProduct());
         }
         DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
-        tvSumPrice.setText(decimalFormat.format(sumPrice)+" vnd");
+        tvSumPrice.setText(decimalFormat.format(sumPrice) + " vnd");
     }
 
-    private void initCart(){
+    private void initCart() {
         rcvCart = view.findViewById(R.id.rcvCart);
         btnPayment = view.findViewById(R.id.btnPayment);
         tvSumPrice = view.findViewById(R.id.tvSumPrice);

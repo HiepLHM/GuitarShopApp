@@ -24,7 +24,7 @@
     <string name="phonenumber">Phone Number</string>
     <string name="address">Address</string>
     <string name="confirmPassword">Confirm</string>
-    <string name="textConfirmPassword">Để bảo mật tài khoản, đề nghị nhập password hiện tại của tài khoản quý khác. Xin cảm ơn!</string>
+    <string name="textConfirmPassword">Để bảo mật tài khoản, đề nghị nhập password hiện tại của tài khoản quý khách. Xin cảm ơn!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="changePass">Change Password</string>
@@ -38,4 +38,18 @@
     <string name="bestsellingproduct">Best Selling Product</string>
     <string name="orderstatus">Order Status</string>
     <string name="backtohome">Back</string>
+    <string name="manager">Manager</string>
+    <string name="listProduct">List Product</string>
+    <string name="addNewProduct">Add new Product</string>
+    <string name="editProduct">Edit</string>
+    <string name="addProduct">Add Product</string>
+    <string name="nameProduct">Name Product</string>
+    <string name="priceProduct">Price Product</string>
+    <string name="imgProduct">Image Product</string>
+    <string name="description">Description</string>
+    <string name="idCategory">ID Category</string>
+    <string name="selectImg">Select Image</string>
+    <string name="statistic">Statistic</string>
+    <string name="backtoadmin">Back To Admin</string>
+    <string name="editProductActivity">Edit Product</string>
 </resources>

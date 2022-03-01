@@ -33,7 +33,7 @@ public class AdvertisementAdapter extends RecyclerView.Adapter<AdvertisementAdap
     @Override
     public void onBindViewHolder(@NonNull AdvertisementViewHolder holder, int position) {
         Advertisement advertisement = mListAds.get(position);
-        if(advertisement==null){
+        if (advertisement == null) {
             return;
         }
         Glide.with(mContext).load(advertisement.getImageAds()).into(holder.imgAds);
@@ -41,14 +41,15 @@ public class AdvertisementAdapter extends RecyclerView.Adapter<AdvertisementAdap
 
     @Override
     public int getItemCount() {
-        if(mListAds!=null){
+        if (mListAds != null) {
             return mListAds.size();
         }
         return 0;
     }
 
-    public class AdvertisementViewHolder extends RecyclerView.ViewHolder{
+    public class AdvertisementViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgAds;
+
         public AdvertisementViewHolder(@NonNull View itemView) {
             super(itemView);
             imgAds = itemView.findViewById(R.id.imgAds);

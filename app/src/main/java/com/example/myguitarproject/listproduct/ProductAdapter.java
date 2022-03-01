@@ -19,14 +19,15 @@ import com.example.myguitarproject.R;
 
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder>{
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private List<Product> mListProduct;
     private Context mContext;
 
     public ProductAdapter(Context mContext) {
         this.mContext = mContext;
     }
-    public void setData(List<Product> list){
+
+    public void setData(List<Product> list) {
         this.mListProduct = list;
         notifyDataSetChanged();
     }
@@ -34,14 +35,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View  view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
         return new ProductViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = mListProduct.get(position);
-        if(product==null){
+        if (product == null) {
             return;
         }
         Glide.with(mContext).load(product.getImageProduct()).into(holder.imgProduct);
@@ -58,23 +59,24 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     private void callDetailProduct(Product product) {
         Intent intent = new Intent(mContext, DetailProduct.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("object_product",product);
+        bundle.putSerializable("object_product", product);
         intent.putExtras(bundle);
         mContext.startActivity(intent);
     }
 
     @Override
     public int getItemCount() {
-        if(mListProduct!=null){
+        if (mListProduct != null) {
             return mListProduct.size();
         }
         return 0;
     }
 
-    public class ProductViewHolder extends RecyclerView.ViewHolder{
+    public class ProductViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgProduct;
         private TextView tvNameProduct, tvPriceProduct;
         private CardView cvProduct;
+
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             imgProduct = itemView.findViewById(R.id.imgProduct);

@@ -25,10 +25,11 @@ public class OrderStatusAdapter extends RecyclerView.Adapter<OrderStatusAdapter.
         this.mContext = mContext;
     }
 
-    public void setData(List<OrderStatus> list){
+    public void setData(List<OrderStatus> list) {
         this.mListOrderStatus = list;
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public OrderStatusViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,7 +40,7 @@ public class OrderStatusAdapter extends RecyclerView.Adapter<OrderStatusAdapter.
     @Override
     public void onBindViewHolder(@NonNull OrderStatusViewHolder holder, int position) {
         OrderStatus orderStatus = mListOrderStatus.get(position);
-        if(orderStatus==null){
+        if (orderStatus == null) {
             return;
         }
         holder.tvNameProductOrderStatus.setText(orderStatus.getNameProduct());
@@ -48,7 +49,7 @@ public class OrderStatusAdapter extends RecyclerView.Adapter<OrderStatusAdapter.
         Glide.with(mContext).load(orderStatus.getImageProduct()).into(holder.imgOrderStatus);
 
         Boolean status = orderStatus.getStatus();
-        if(status){
+        if (status) {
             holder.tvOrderStatus.setText("Đã giao hàng thành công");
             holder.tvOrderStatus.setBackgroundColor(Color.GREEN);
         } else {
@@ -59,15 +60,16 @@ public class OrderStatusAdapter extends RecyclerView.Adapter<OrderStatusAdapter.
 
     @Override
     public int getItemCount() {
-        if(mListOrderStatus!=null){
+        if (mListOrderStatus != null) {
             return mListOrderStatus.size();
         }
         return 0;
     }
 
-    public class OrderStatusViewHolder extends RecyclerView.ViewHolder{
+    public class OrderStatusViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgOrderStatus;
         private TextView tvNameProductOrderStatus, tvPriceProductOrderStatus, tvQuantilyOrderStatus, tvOrderStatus;
+
         public OrderStatusViewHolder(@NonNull View itemView) {
             super(itemView);
             imgOrderStatus = itemView.findViewById(R.id.imgOrderStatus);

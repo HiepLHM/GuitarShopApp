@@ -5,6 +5,7 @@ import com.example.myguitarproject.cart.Cart;
 import com.example.myguitarproject.listproduct.Category;
 import com.example.myguitarproject.listproduct.Product;
 import com.example.myguitarproject.orderstatus.OrderStatus;
+import com.example.myguitarproject.productadmin.CategoryAdmin;
 import com.example.myguitarproject.user.User;
 
 import java.util.List;
@@ -22,6 +23,10 @@ public interface DataClient {
     @Multipart
     @POST("saveAvatarToFolder.php")
     Call<String> callAvatarUser(@Part MultipartBody.Part file_image);
+
+    @Multipart
+    @POST("saveImageNewProduct.php")
+    Call<String> callImageNewProduct(@Part MultipartBody.Part file_image);
 
     @FormUrlEncoded
     @POST("RegisterUser.php")
@@ -123,4 +128,30 @@ public interface DataClient {
     @FormUrlEncoded
     @POST("searchProductWithName.php")
     Call<List<Product>> callSearchProduct(@Field("name_product") String nameProduct);
+
+    @FormUrlEncoded
+    @POST("insertProduct.php")
+    Call<String> callInsertProduct(@Field("name_product") String name_product,
+                                   @Field("price_product") String price_product,
+                                   @Field("image_product") String image_product,
+                                   @Field("description_product") String description_product,
+                                   @Field("discount") String discount,
+                                   @Field("id_category") int id_category);
+
+    @GET("getCategory.php")
+    Call<List<CategoryAdmin>> callCategoryAdmin();
+
+    @FormUrlEncoded
+    @POST("deleteProductWithId.php")
+    Call<String> callDeleteProductWithId(@Field("id_product") int id_product);
+
+    @FormUrlEncoded
+    @POST("updateProduct.php")
+    Call<String> callUpdateProduct(@Field("id_product") int id_product,
+                                   @Field("name_product") String name_product,
+                                   @Field("price_product") String price_product,
+                                   @Field("image_product") String image_product,
+                                   @Field("description_product") String description_product,
+                                   @Field("discount") int discount,
+                                   @Field("id_category") int id_category);
 }

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -29,12 +30,12 @@ public class LoginActivity extends AppCompatActivity {
     private EditText edtPassword, edtUsername;
     private Button btnLogin, btnRegister;
     private TextView tvErrorLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initLogin();
-
 
 
         //handler register button
@@ -47,7 +48,8 @@ public class LoginActivity extends AppCompatActivity {
 
         //check user logout or login.
         List<User> users = DataLocal.getInstance(this).localDAO().getListUserLocal();
-        if(users.size()!=0){
+
+        if (users.size() != 0) {
             Intent gotoMainActivity = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(gotoMainActivity);
             finish();
@@ -62,14 +64,13 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-
     }
 
     private void handlerLogin() {
         String username = edtUsername.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
 
-        if(TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
+        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
             tvErrorLogin.setText("Vui Lòng nhập đủ thông tin!");
             tvErrorLogin.setVisibility(View.VISIBLE);
             return;
@@ -81,14 +82,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 ArrayList<User> users = (ArrayList<User>) response.body();
-                if(users.size()>0){
+                if (users.size() > 0) {
                     User user = users.get(0);
-                    if(!checkUserExists(user)){
+                    if (!checkUserExists(user)) {
                         DataLocal.getInstance(LoginActivity.this).localDAO().insertUserLocal(user);
                     }
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
-                } else{
+                } else {
                     tvErrorLogin.setText("Tài khoản không tồn tại!");
                     tvErrorLogin.setVisibility(View.GONE);
                     return;
@@ -97,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
-                Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -107,24 +108,24 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private boolean checkUserExists(User user){
+    private boolean checkUserExists(User user) {
         List<User> list = DataLocal.getInstance(LoginActivity.this).localDAO().checkUserExists(user.getUsername());
-        return list!=null && !list.isEmpty();
+        return list != null && !list.isEmpty();
     }
 
-    private void initLogin(){
+    private void initLogin() {
         edtUsername = findViewById(R.id.edtUsername);
         edtPassword = findViewById(R.id.edtPassword);
-        btnLogin    = findViewById(R.id.btnLogin);
+        btnLogin = findViewById(R.id.btnLogin);
         btnRegister = findViewById(R.id.btnRegister);
         tvErrorLogin = findViewById(R.id.tvErrorLogin);
     }
 
-    private void hideKeyBoard(){
-        try{
+    public void hideKeyBoard() {
+        try {
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        } catch(NullPointerException ex){
+        } catch (NullPointerException ex) {
             ex.printStackTrace();
         }
     }

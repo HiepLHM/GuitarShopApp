@@ -25,10 +25,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         this.mContext = mContext;
     }
 
-    public void setData(List<Product> list){
+    public void setData(List<Product> list) {
         this.mListProduct = list;
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public SearchViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,7 +40,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     @Override
     public void onBindViewHolder(@NonNull SearchViewHolder holder, int position) {
         Product product = mListProduct.get(position);
-        if(product==null){
+        if (product == null) {
             return;
         }
         Glide.with(mContext).load(product.getImageProduct()).into(holder.imgSearch);
@@ -51,16 +52,17 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public int getItemCount() {
-        if(mListProduct!=null){
+        if (mListProduct != null) {
             return mListProduct.size();
         }
         return 0;
     }
 
-    public class SearchViewHolder extends RecyclerView.ViewHolder{
+    public class SearchViewHolder extends RecyclerView.ViewHolder {
         private CardView cardViewSearch;
         private ImageView imgSearch;
         private TextView tvNameProductSearch, tvPriceProductSearch, tvDiscount, tvPriceProductSearchDiscount, tvQuantilySold;
+
         public SearchViewHolder(@NonNull View itemView) {
             super(itemView);
             cardViewSearch = itemView.findViewById(R.id.cardViewSearch);

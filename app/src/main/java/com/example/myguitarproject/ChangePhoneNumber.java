@@ -27,6 +27,7 @@ public class ChangePhoneNumber extends AppCompatActivity {
     private EditText edtNewPhoneNumber;
     private TextView tvErrorChangePhoneNumber;
     private Button btnConfirmChangePhoneNumber, btnCancelPhoneNumber;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +55,7 @@ public class ChangePhoneNumber extends AppCompatActivity {
         String phoneNumber = edtNewPhoneNumber.getText().toString().trim();
         List<User> userList = DataLocal.getInstance(this).localDAO().getListUserLocal();
         int id = userList.get(0).getIdUser();
-        if(TextUtils.isEmpty(phoneNumber)){
+        if (TextUtils.isEmpty(phoneNumber)) {
             tvErrorChangePhoneNumber.setText("please insert phone number!");
             tvErrorChangePhoneNumber.setVisibility(View.VISIBLE);
             return;
@@ -65,7 +66,7 @@ public class ChangePhoneNumber extends AppCompatActivity {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 String mess = response.body();
-                if(mess.equals("success")){
+                if (mess.equals("success")) {
                     Toast.makeText(ChangePhoneNumber.this, "Change Phone Number Success", Toast.LENGTH_SHORT).show();
                     Intent gotoUserProfile = new Intent(ChangePhoneNumber.this, UserProfile.class);
                     startActivity(gotoUserProfile);

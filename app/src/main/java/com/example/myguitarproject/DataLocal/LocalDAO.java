@@ -7,6 +7,7 @@ import androidx.room.Query;
 import com.example.myguitarproject.user.User;
 
 import java.util.List;
+
 @Dao
 public interface LocalDAO {
     @Insert

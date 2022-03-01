@@ -23,10 +23,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     public OrderAdapter(Context mContext) {
         this.mContext = mContext;
     }
-    public void setData(List<Cart> list){
+
+    public void setData(List<Cart> list) {
         this.mListCart = list;
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public OrderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,27 +39,27 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
     @Override
     public void onBindViewHolder(@NonNull OrderViewHolder holder, int position) {
         Cart cart = mListCart.get(position);
-        //cart = (Cart) getIntent().getExtras().get("mCart");
-        if(cart==null){
+        if (cart == null) {
             return;
         }
         holder.tvNameProductOrder.setText(cart.getNameProduct());
         holder.tvPriceProductOrder.setText(cart.getPriceProduct());
-        holder.tvQuantilyOrder.setText("x"+cart.getQuanlityProduct());
+        holder.tvQuantilyOrder.setText("x" + cart.getQuanlityProduct());
         Glide.with(mContext).load(cart.getImageProduct()).into(holder.imgOrder);
     }
 
     @Override
     public int getItemCount() {
-        if(mListCart!=null){
+        if (mListCart != null) {
             return mListCart.size();
         }
         return 0;
     }
 
-    public class OrderViewHolder extends RecyclerView.ViewHolder{
+    public class OrderViewHolder extends RecyclerView.ViewHolder {
         private TextView tvNameProductOrder, tvPriceProductOrder, tvQuantilyOrder;
         private ImageView imgOrder;
+
         public OrderViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNameProductOrder = itemView.findViewById(R.id.tvNameProductOrder);

@@ -21,7 +21,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public CategoryAdapter(Context mContext) {
         this.mContext = mContext;
     }
-    public void setData(List<Category> list){
+
+    public void setData(List<Category> list) {
         this.mListCategory = list;
         notifyDataSetChanged();
     }
@@ -36,7 +37,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category category = mListCategory.get(position);
-        if(category==null){
+        if (category == null) {
             return;
         }
         holder.tvTitle.setText(category.getNameCategory());
@@ -52,15 +53,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
     @Override
     public int getItemCount() {
-        if(mListCategory!=null){
+        if (mListCategory != null) {
             return mListCategory.size();
         }
         return 0;
     }
 
-    public class CategoryViewHolder extends RecyclerView.ViewHolder{
+    public class CategoryViewHolder extends RecyclerView.ViewHolder {
         private TextView tvTitle;
         private RecyclerView rcvListProduct;
+
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);

@@ -44,13 +44,14 @@ public class HomeFragment extends Fragment {
     private Runnable mRunnable = new Runnable() {
         @Override
         public void run() {
-            if(viewpagerAds.getCurrentItem()>mListAds.size()-1){
+            if (viewpagerAds.getCurrentItem() > mListAds.size() - 1) {
                 viewpagerAds.setCurrentItem(0);
             } else {
-                viewpagerAds.setCurrentItem(viewpagerAds.getCurrentItem()+1);
+                viewpagerAds.setCurrentItem(viewpagerAds.getCurrentItem() + 1);
             }
         }
     };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,16 +86,16 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
                         ArrayList<Category> categories = (ArrayList<Category>) response.body();
-                        for(int i = 0; i<categories.size();i++){
+                        for (int i = 0; i < categories.size(); i++) {
                             int idCate = categories.get(i).getIdCategory();
                             ArrayList<Product> productlist = new ArrayList<>();
-                            for(int k=0 ; k<mListProduct.size();k++){
+                            for (int k = 0; k < mListProduct.size(); k++) {
                                 Product pro = mListProduct.get(k);
-                                if(idCate == pro.getIdCategory()){
+                                if (idCate == pro.getIdCategory()) {
                                     productlist.add(pro);
                                 }
                             }
-                            mListCategory.add(new Category(categories.get(i).getIdCategory(),categories.get(i).getNameCategory(), categories.get(i).getImageCategory(), productlist));
+                            mListCategory.add(new Category(categories.get(i).getIdCategory(), categories.get(i).getNameCategory(), categories.get(i).getImageCategory(), productlist));
                         }
                         CategoryAdapter categoryAdapter = new CategoryAdapter(getContext());
                         categoryAdapter.setData(mListCategory);
@@ -103,14 +104,14 @@ public class HomeFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<List<Category>> call, Throwable t) {
-                        Toast.makeText(getContext(), "Failed call category", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "Failed call category", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
 
             @Override
             public void onFailure(Call<List<Product>> call, Throwable t) {
-                Toast.makeText(getContext(), "lỗi call product", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "lỗi call product", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -123,14 +124,14 @@ public class HomeFragment extends Fragment {
             public void onResponse(Call<List<Advertisement>> call, Response<List<Advertisement>> response) {
                 ArrayList<Advertisement> advertisements = (ArrayList<Advertisement>) response.body();
                 mListAds.addAll(advertisements);
-                advertisementAdapter = new AdvertisementAdapter( mListAds, getContext());
+                advertisementAdapter = new AdvertisementAdapter(mListAds, getContext());
                 viewpagerAds.setAdapter(advertisementAdapter);
                 circleIndicator3.setViewPager(viewpagerAds);
             }
 
             @Override
             public void onFailure(Call<List<Advertisement>> call, Throwable t) {
-                Toast.makeText(getContext(), "lỗi slide Ads", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "lỗi slide Ads", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -147,7 +148,7 @@ public class HomeFragment extends Fragment {
         mHandler.postDelayed(mRunnable, 3000);
     }
 
-    private void initHome(){
+    private void initHome() {
         viewpagerAds = view.findViewById(R.id.viewPagerAds);
         circleIndicator3 = view.findViewById(R.id.circleIndicator);
         rcvCategory = view.findViewById(R.id.rcvCategory);

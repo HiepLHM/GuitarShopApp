@@ -20,7 +20,7 @@ import com.example.myguitarproject.listproduct.Product;
 
 import java.util.List;
 
-public class NewProductAdapter extends RecyclerView.Adapter<NewProductAdapter.NewProductViewHolder>{
+public class NewProductAdapter extends RecyclerView.Adapter<NewProductAdapter.NewProductViewHolder> {
     private List<Product> mListNewProduct;
     private Context mContext;
 
@@ -28,10 +28,11 @@ public class NewProductAdapter extends RecyclerView.Adapter<NewProductAdapter.Ne
         this.mContext = mContext;
     }
 
-    public void setData(List<Product> list){
+    public void setData(List<Product> list) {
         this.mListNewProduct = list;
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public NewProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,7 +43,7 @@ public class NewProductAdapter extends RecyclerView.Adapter<NewProductAdapter.Ne
     @Override
     public void onBindViewHolder(@NonNull NewProductViewHolder holder, int position) {
         Product product = mListNewProduct.get(position);
-        if(product==null){
+        if (product == null) {
             return;
         }
         Glide.with(mContext).load(product.getImageProduct()).into(holder.imgProductNew);
@@ -62,22 +63,23 @@ public class NewProductAdapter extends RecyclerView.Adapter<NewProductAdapter.Ne
 
     @Override
     public int getItemCount() {
-        if(mListNewProduct!=null){
+        if (mListNewProduct != null) {
             return mListNewProduct.size();
         }
         return 0;
     }
 
-    public class NewProductViewHolder extends RecyclerView.ViewHolder{
+    public class NewProductViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgProductNew;
         private TextView tvNameProductNew, tvPriceProductRealNew;
         private CardView cvNewProduct;
+
         public NewProductViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgProductNew =itemView.findViewById(R.id.imgProductNew);
+            imgProductNew = itemView.findViewById(R.id.imgProductNew);
             tvNameProductNew = itemView.findViewById(R.id.tvNameProductNew);
             tvPriceProductRealNew = itemView.findViewById(R.id.tvPriceProductRealNew);
-            cvNewProduct =itemView.findViewById(R.id.cvNewProduct);
+            cvNewProduct = itemView.findViewById(R.id.cvNewProduct);
         }
     }
 }

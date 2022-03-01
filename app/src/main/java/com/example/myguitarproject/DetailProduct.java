@@ -28,6 +28,7 @@ public class DetailProduct extends AppCompatActivity {
     private ImageView imgDetailProduct;
     private TextView tvNameDetailProduct, tvPriceDetailProduct, tvDesProduct;
     private Button btnAddToCart, btnBackToMain;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +51,12 @@ public class DetailProduct extends AppCompatActivity {
                 String imageProduct = product.getImageProduct();
                 int idUser = userList.get(0).getIdUser();
                 DataClient dataClient = APIUtils.getData();
-                Call<String> callInsertCart = dataClient.callInsertCart(idProduct, nameProduct, priceProdcut,imageProduct, idUser);
+                Call<String> callInsertCart = dataClient.callInsertCart(idProduct, nameProduct, priceProdcut, imageProduct, idUser);
                 callInsertCart.enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
                         String messInsert = response.body();
-                        if(messInsert.equals("success")){
+                        if (messInsert.equals("success")) {
                             Toast.makeText(DetailProduct.this, "insert success", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -79,7 +80,7 @@ public class DetailProduct extends AppCompatActivity {
 
     }
 
-    private void initDetailProduct(){
+    private void initDetailProduct() {
         imgDetailProduct = findViewById(R.id.imgDetailProduct);
         tvNameDetailProduct = findViewById(R.id.tvNameDetailProduct);
         tvPriceDetailProduct = findViewById(R.id.tvPriceDetailProduct);

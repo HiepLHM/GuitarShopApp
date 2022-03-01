@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menuHome"
-        android:title="@string/mnuhome"
-        android:icon="@drawable/baseline_home_white_24"/>
-    <item android:id="@+id/menuPosibility"
-        android:title="@string/posobility"
-        android:icon="@drawable/baseline_history_white_24"/>
-    <item android:id="@+id/menuCart"
-        android:title="@string/mnuCart"
-        android:icon="@drawable/baseline_shopping_cart_white_24"/>
-    <item android:id="@+id/menuSearch"
-        android:title="@string/search"
-        android:icon="@drawable/outline_search_white_24"/>
+    <item
+        android:id="@+id/menuHome"
+        android:icon="@drawable/baseline_home_white_24"
+        android:title="@string/mnuhome" />
+    <item
+        android:id="@+id/menuPosibility"
+        android:icon="@drawable/baseline_history_white_24"
+        android:title="@string/posobility" />
+    <item
+        android:id="@+id/menuCart"
+        android:icon="@drawable/baseline_shopping_cart_white_24"
+        android:title="@string/mnuCart" />
+    <item
+        android:id="@+id/menuSearch"
+        android:icon="@drawable/outline_search_white_24"
+        android:title="@string/search" />
 </menu>

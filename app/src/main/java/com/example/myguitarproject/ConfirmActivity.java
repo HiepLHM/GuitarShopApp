@@ -26,6 +26,7 @@ public class ConfirmActivity extends AppCompatActivity {
     private EditText edtPasswordOld;
     private Button btnConfirm, btnCancelConfirm;
     private TextView tvErrorConfirm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +55,7 @@ public class ConfirmActivity extends AppCompatActivity {
         String password = edtPasswordOld.getText().toString().trim();
         List<User> userList = DataLocal.getInstance(this).localDAO().getListUserLocal();
         int id = userList.get(0).getIdUser();
-        if(TextUtils.isEmpty(password)){
+        if (TextUtils.isEmpty(password)) {
             tvErrorConfirm.setText("Insert Password");
             tvErrorConfirm.setVisibility(View.VISIBLE);
             return;
@@ -65,11 +66,11 @@ public class ConfirmActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 String mess = response.body();
-                if(mess.equals("correct")){
+                if (mess.equals("correct")) {
                     Intent gotoChangePassActivity = new Intent(ConfirmActivity.this, ChangePasswordActivity.class);
                     startActivity(gotoChangePassActivity);
                 }
-                if(mess.equals("failed")){
+                if (mess.equals("failed")) {
                     Toast.makeText(ConfirmActivity.this, "Password incorrect", Toast.LENGTH_SHORT).show();
                     tvErrorConfirm.setText("Password incorrect");
                     tvErrorConfirm.setVisibility(View.VISIBLE);
@@ -78,12 +79,12 @@ public class ConfirmActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(ConfirmActivity.this, "Call confirm failed", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ConfirmActivity.this, "Call confirm failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void initConfirm(){
+    private void initConfirm() {
         edtPasswordOld = findViewById(R.id.edtPasswordOld);
         btnConfirm = findViewById(R.id.btnConfirm);
         tvErrorConfirm = findViewById(R.id.tvErrorConfirm);

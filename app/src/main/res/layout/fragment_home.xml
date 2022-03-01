@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
             <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPagerAds"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/viewPagerAds"/>
+                android:layout_height="match_parent" />
+
             <me.relex.circleindicator.CircleIndicator3
+                android:id="@+id/circleIndicator"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginEnd="10dp"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
-                app:ci_drawable="@drawable/bg_circleindicator"
-                android:id="@+id/circleIndicator"/>
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="10dp"
+                app:ci_drawable="@drawable/bg_circleindicator" />
         </RelativeLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rcvCategory"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

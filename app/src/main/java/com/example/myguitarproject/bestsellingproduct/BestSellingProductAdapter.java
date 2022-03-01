@@ -21,7 +21,7 @@ import com.example.myguitarproject.listproduct.Product;
 import java.util.List;
 
 public class BestSellingProductAdapter extends RecyclerView.Adapter<BestSellingProductAdapter.BestSellingViewHolder> {
-    //private List<BestSellingProduct> mListBestSellingProduct;
+
     private List<Product> mListProduct;
     private Context mContext;
 
@@ -29,8 +29,7 @@ public class BestSellingProductAdapter extends RecyclerView.Adapter<BestSellingP
         this.mContext = mContext;
     }
 
-    public void setData(List<Product> list){
-        //this.mListBestSellingProduct = list;
+    public void setData(List<Product> list) {
         this.mListProduct = list;
         notifyDataSetChanged();
     }
@@ -44,18 +43,12 @@ public class BestSellingProductAdapter extends RecyclerView.Adapter<BestSellingP
 
     @Override
     public void onBindViewHolder(@NonNull BestSellingViewHolder holder, int position) {
-        //BestSellingProduct bestSellingProduct = mListBestSellingProduct.get(position);
+
         Product product = mListProduct.get(position);
-//        if(bestSellingProduct==null){
-//            return;
-//        }
-        if(product==null){
+        if (product == null) {
             return;
         }
-//        holder.tvNameProductSold.setText(bestSellingProduct.getNameProduct());
-//        holder.tvPriceProductSold.setText(bestSellingProduct.getPriceProduct());
-//        holder.tvQuantilySold.setText(String.valueOf(bestSellingProduct.getQuantilySold()));
-//        Glide.with(mContext).load(bestSellingProduct.getImageProduct()).into(holder.imgProductSold);
+
         holder.tvNameProductSold.setText(product.getNameProduct());
         holder.tvPriceProductSold.setText(product.getPriceProduct());
         holder.tvQuantilySold.setText(String.valueOf(product.getQuantilySold()));
@@ -74,19 +67,18 @@ public class BestSellingProductAdapter extends RecyclerView.Adapter<BestSellingP
 
     @Override
     public int getItemCount() {
-//        if(mListBestSellingProduct!=null){
-//            return mListBestSellingProduct.size();
-//        }
-        if(mListProduct!=null){
+
+        if (mListProduct != null) {
             return mListProduct.size();
         }
         return 0;
     }
 
-    public class BestSellingViewHolder extends RecyclerView.ViewHolder{
+    public class BestSellingViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgProductSold;
         private TextView tvNameProductSold, tvPriceProductSold, tvQuantilySold;
         private CardView cvBestSellingProduct;
+
         public BestSellingViewHolder(@NonNull View itemView) {
             super(itemView);
             imgProductSold = itemView.findViewById(R.id.imgProductSold);

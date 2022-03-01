@@ -17,6 +17,12 @@ public class Category implements Serializable {
         mListProduct = product;
     }
 
+    public Category(int idCategory, String nameCategory, String imageCategory) {
+        IdCategory = idCategory;
+        NameCategory = nameCategory;
+        ImageCategory = imageCategory;
+    }
+
     public List<Product> getmListProduct() {
         return mListProduct;
     }

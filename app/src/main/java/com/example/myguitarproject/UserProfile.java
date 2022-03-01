@@ -203,11 +203,7 @@ public class UserProfile extends AppCompatActivity {
 
             }
         });
-//        Glide.with(this).load(user.get(0).getAvatar()).into(imgChangeAvatar);
-//        tvChangeUsername.setText(user.get(0).getUsername());
-//        tvChangePassword.setText(user.get(0).getPassword());
-//        tvChangeEmail.setText(user.get(0).getEmail());
-//        tvChangePhoneNumber.setText(user.get(0).getPhone_number());
+
 
     }
 
